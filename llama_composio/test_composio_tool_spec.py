@@ -28,7 +28,7 @@ class TestComposioToolSpec(unittest.TestCase):
         actual_params = list(sign.parameters.keys())
         self.assertEqual(expected_params, actual_params)
         sig = signature(send_message_func)
-        expected_sig = "(channel: str, text: str) -> Dict[str, Any]"
+        expected_sig = "(channel: str, text: str) -> None"
         self.assertEqual(str(sig), expected_sig)
         description = send_message_func.__doc__
         expected_desc = "Send a message to a channel or user"
