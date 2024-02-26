@@ -68,9 +68,14 @@ class ComposioToolSpec(BaseToolSpec):
             response = requests.post(f"http://api.example.com/{action_id}", data=request_body, headers={'Content-Type': 'application/json'})
             return response.json()
 
-        parameters = [
-            (name, (map_composio_type_to_python(input_params[name]), Field(... if name in required_params else None))) for name in input_params
-        ]
+        
+        parameters = []
+        for name in input_params:
+            python_type = map_composio_type_to_python(input_params[name])
+            field_value = Field(... if name in required_params else None)
+            parameters.append((name, (python_type, field_value)))
+            if name == "grouping":
+                print(f"Parameter added: {name}, Type: {python_type}, Field Value: {field_value}")
         dynamic_model = create_model(f"{action_id}_ParamsModel", **dict(parameters), __base__=BaseModel)
         
         def wrapper_function(*args, **kwargs) -> Dict[str, Any]:
