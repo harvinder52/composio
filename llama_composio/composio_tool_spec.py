@@ -2,26 +2,31 @@ import json
 from typing import Dict, Any, List, Union, Type
 import logging
 import requests
-from inspect import Parameter, Signature
-import types
+from pydantic import BaseModel, create_model, Field
 
 from llama_index.core.tools.tool_spec.base import BaseToolSpec
 
 logger = logging.getLogger(__name__)
 
-def map_composio_type_to_python(type_spec) -> Type:
+def map_composio_type_to_python(type_spec) -> Type[BaseModel]:
+    print("type_spec:", type_spec)
     if isinstance(type_spec, dict):
         type_str = type_spec.get('type')
         if type_str == 'string':
             return str
+        elif type_str == 'integer':
+            return int
         elif type_str == 'number':
-            return float if '.' in str(type_spec.get('example', '')) else int
+            return float
         elif type_str == 'boolean':
             return bool
         elif type_str == 'object':
             properties = type_spec.get('properties', {})
             required = type_spec.get('required', [])
-            return Dict[str, Union[*tuple(map_composio_type_to_python(prop) for prop in properties.values()), Any]] if properties else Dict[str, Any]
+            fields = {prop: (map_composio_type_to_python(prop_spec), Field(...)) for prop, prop_spec in properties.items() if prop in required}
+            fields.update({prop: (map_composio_type_to_python(prop_spec), Field(None)) for prop, prop_spec in properties.items() if prop not in required})
+            model_name = f"DynamicModel_{hash(frozenset(fields.items()))}"
+            return create_model(model_name, **fields)
         elif type_str == 'array':
             items_spec = type_spec.get('items', {})
             return List[map_composio_type_to_python(items_spec)] if items_spec else List[Any]
@@ -64,15 +69,17 @@ class ComposioToolSpec(BaseToolSpec):
             return response.json()
 
         parameters = [
-            Parameter(name=param, kind=Parameter.POSITIONAL_OR_KEYWORD, annotation=map_composio_type_to_python(input_params[param]), default=Parameter.empty if param in required_params else Parameter.default)
-            for param in input_params
+            (name, (map_composio_type_to_python(input_params[name]), Field(... if name in required_params else None))) for name in input_params
         ]
-        new_sig = Signature(parameters, return_annotation=Dict[str, Any])
+        dynamic_model = create_model(f"{action_id}_ParamsModel", **dict(parameters), __base__=BaseModel)
+        
+        def wrapper_function(*args, **kwargs) -> Dict[str, Any]:
+            model_instance = dynamic_model(**kwargs)
+            return template_function(**model_instance.dict())
 
-        func = types.FunctionType(template_function.__code__, globals(), name=action_id, closure=template_function.__closure__)
+        wrapper_function.__signature__ = dynamic_model.__signature__
+        wrapper_function.__doc__ = description
+        wrapper_function.__name__ = action_id
 
-        # Assign the new signature to the function.
-        func.__signature__ = new_sig
-        func.__doc__ = description
+        return wrapper_function
 
-        return func
