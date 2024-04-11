@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from .sdk import Composio
 import os
 
@@ -9,7 +8,6 @@ def generate_enums():
     sdk_client = Composio("yw1qb4ls4340z696zh7sa")
     apps = sdk_client.get_list_of_apps()
     actions = sdk_client.get_list_of_actions()
-=======
 from .storage import get_base_account_api_key
 from .sdk import Composio
 import os
@@ -103,14 +101,6 @@ def generate_enums_beta():
         app_key = app['key']
         app_actions = [action for action in actions if action["appKey"] == app_key]
         for action in app_actions:
-<<<<<<< HEAD
-            enum_name = f'{app_key.upper()}_{_get_enum_key(action["display_name"])}'
-            enum_value = f'("{app_key}", "{action["name"]}")'
-            enum_content += f'    {enum_name} = {enum_value}\n'
-        # enum_content += f'Actions.{app_name} = {app_name}\n\n'
-    with open(os.path.join(os.path.dirname(__file__), 'enums.py'), 'w') as f:
-        f.write(enum_content)
-=======
             enum_name = f'{_get_enum_key(action["name"])}'
             enum_value = f'("{app_key}", "{action["name"]}")'
             enum_content += f'    {enum_name} = {enum_value}\n'
@@ -143,4 +133,3 @@ def get_git_user_info() -> GitUserInfo:
         return GitUserInfo(name=name, email=email)
     except subprocess.CalledProcessError:
         return GitUserInfo(name=None, email=None)
->>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15

@@ -1,7 +1,6 @@
 from enum import Enum
 
 class App(Enum):
-<<<<<<< HEAD
     CLICKUP = "clickup"
     GOOGLE_DRIVE = "google-drive"
     GOOGLE_SHEETS = "google-sheets"
@@ -46,173 +45,16 @@ class TestIntegration(Enum):
     DROPBOX = "test-dropbox-connector"
     EVENTBRITE = "test-eventbrite-connector"
     MIXPANEL = "test-mixpanel-connector"
-=======
-    GMAIL = "gmail"
-    ATTIO = "attio"
-    ZENDESK = "zendesk"
-    TODOIST = "todoist"
-    KLAVIYO = "klaviyo"
-    BITBUCKET = "bitbucket"
-    MONDAY = "monday"
-    SLACK = "slack"
-    CLICKUP = "clickup"
-    DISCORD = "discord"
-    STRAVA = "strava"
-    DROPBOX = "dropbox"
-    INTERCOM = "intercom"
-    SHOPIFY = "shopify"
-    GOOGLE_SHEETS = "google-sheets"
-    ASANA = "asana"
-    EVENTBRITE = "eventbrite"
-    LINEAR = "linear"
-    HUBSPOT = "hubspot"
-    JIRA = "jira"
-    NOTION = "notion"
-    TASKADE = "taskade"
-    GOOGLE_DRIVE = "google-drive"
-    GITLAB = "gitlab"
-    MIXPANEL = "mixpanel"
-    GOOGLE_DOCS = "google-docs"
-    GUMROAD = "gumroad"
-    MAILCHIMP = "mailchimp"
-    BOX = "box"
-    MIRO = "miro"
-    KEAP = "keap"
-    SPLITWISE = "splitwise"
-    PAGERDUTY = "pagerduty"
-    ZOOM = "zoom"
-    TIMELY = "timely"
-    ZOHO = "zoho"
-    FRESHDESK = "freshdesk"
-    FIGMA = "figma"
-    PIPEDRIVE = "pipedrive"
-    APIFY = "apify"
-    TWITCH = "twitch"
-    STACK_EXCHANGE = "stack-exchange"
-    GITHUB_OPEN_API_SPEC = "github_open_api_spec"
-    ACCELO = "accelo"
-    REDDIT = "reddit"
-    SURVEY_MONKEY = "survey-monkey"
-    TWITTER = "twitter"
-    XERO = "xero"
-    ZOHO_INVENTORY = "zoho_inventory"
-    ZOHO_MAIL = "zoho_mail"
-    AMAZON = "amazon"
-    SERVICEM8 = "servicem8"
-    SHORTCUT = "shortcut"
-    ZOHO_BOOKS = "zoho_books"
-    ZOHO_INVOICE = "zoho_invoice"
-    GORGIAS = "gorgias"
-    SALESFORCE = "salesforce"
-    SMUGMUG = "smugmug"
-    WAKATIME = "wakatime"
-    ZOHO_BIGIN = "zoho_bigin"
-    ZOHO_DESK = "zoho_desk"
-    HACKERRANK_WORK = "hackerrank-work"
-    BOLDSIGN = "boldsign"
-    GURU = "guru"
-    BAMBOOHR = "bamboohr"
-    HARVEST = "harvest"
-    ATLASSIAN = "atlassian"
-    DEEL = "deel"
-    FRONT = "front"
-    GITHUB = "github"
-    FRESHBOOKS = "freshbooks"
-    CALENDLY = "calendly"
-    TRELLO = "trello"
-    TYPEFORM = "typeform"
-    GOOGLE_CALENDAR = "google_calendar"
-
-class TestIntegration(Enum):
-    GMAIL = "test-gmail-connector"
-    ATTIO = "test-attio-connector"
-    ZENDESK = "test-zendesk-connector"
-    TODOIST = "test-todoist-connector"
-    KLAVIYO = "test-klaviyo-connector"
-    BITBUCKET = "test-bitbucket-connector"
-    MONDAY = "test-monday-connector"
-    SLACK = "test-slack-connector"
-    CLICKUP = "test-clickup-connector"
-    DISCORD = "test-discord-connector"
-    STRAVA = "test-strava-connector"
-    DROPBOX = "test-dropbox-connector"
-    INTERCOM = "test-intercom-connector"
-    SHOPIFY = "test-shopify-connector"
-    GOOGLE_SHEETS = "test-google-sheets-connector"
-    ASANA = "test-asana-connector"
-    EVENTBRITE = "test-eventbrite-connector"
-    LINEAR = "test-linear-connector"
-    HUBSPOT = "test-hubspot-connector"
-    JIRA = "test-jira-connector"
-    NOTION = "test-notion-connector"
-    TASKADE = "test-taskade-connector"
-    GOOGLE_DRIVE = "test-google-drive-connector"
-    GITLAB = "test-gitlab-connector"
-    MIXPANEL = "test-mixpanel-connector"
-    GOOGLE_DOCS = "test-google-docs-connector"
-    GUMROAD = "test-gumroad-connector"
-    MAILCHIMP = "test-mailchimp-connector"
-    BOX = "test-box-connector"
-    MIRO = "test-miro-connector"
-    KEAP = "test-keap-connector"
-    SPLITWISE = "test-splitwise-connector"
-    PAGERDUTY = "test-pagerduty-connector"
-    ZOOM = "test-zoom-connector"
-    TIMELY = "test-timely-connector"
-    ZOHO = "test-zoho-connector"
-    FRESHDESK = "test-freshdesk-connector"
-    FIGMA = "test-figma-connector"
-    PIPEDRIVE = "test-pipedrive-connector"
-    APIFY = "test-apify-connector"
-    TWITCH = "test-twitch-connector"
-    STACK_EXCHANGE = "test-stack-exchange-connector"
-    GITHUB_OPEN_API_SPEC = "test-github_open_api_spec-connector"
-    ACCELO = "test-accelo-connector"
-    REDDIT = "test-reddit-connector"
-    SURVEY_MONKEY = "test-survey-monkey-connector"
-    TWITTER = "test-twitter-connector"
-    XERO = "test-xero-connector"
-    ZOHO_INVENTORY = "test-zoho_inventory-connector"
-    ZOHO_MAIL = "test-zoho_mail-connector"
-    AMAZON = "test-amazon-connector"
-    SERVICEM8 = "test-servicem8-connector"
-    SHORTCUT = "test-shortcut-connector"
-    ZOHO_BOOKS = "test-zoho_books-connector"
-    ZOHO_INVOICE = "test-zoho_invoice-connector"
-    GORGIAS = "test-gorgias-connector"
-    SALESFORCE = "test-salesforce-connector"
-    SMUGMUG = "test-smugmug-connector"
-    WAKATIME = "test-wakatime-connector"
-    ZOHO_BIGIN = "test-zoho_bigin-connector"
-    ZOHO_DESK = "test-zoho_desk-connector"
-    HACKERRANK_WORK = "test-hackerrank-work-connector"
-    BOLDSIGN = "test-boldsign-connector"
-    GURU = "test-guru-connector"
-    BAMBOOHR = "test-bamboohr-connector"
-    HARVEST = "test-harvest-connector"
-    ATLASSIAN = "test-atlassian-connector"
-    DEEL = "test-deel-connector"
-    FRONT = "test-front-connector"
-    GITHUB = "test-github-connector"
-    FRESHBOOKS = "test-freshbooks-connector"
-    CALENDLY = "test-calendly-connector"
-    TRELLO = "test-trello-connector"
-    TYPEFORM = "test-typeform-connector"
-    GOOGLE_CALENDAR = "test-google_calendar-connector"
->>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 
 class Action(Enum):
     def __init__(self, service, action):
         self.service = service
         self.action = action
 
-<<<<<<< HEAD
-=======
     GMAIL_SEND_EMAIL = ("gmail", "gmail_send_email")
     GMAIL_CREATE_EMAIL_DRAFT = ("gmail", "gmail_create_email_draft")
     GMAIL_FIND_EMAIL_ID_IN_GMAIL = ("gmail", "gmail_find_email_id")
     GMAIL_ADD_LABEL_TO_EMAIL = ("gmail", "gmail_add_label_to_email")
->>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     ZENDESK_CREATE_ZENDESK_ORGANIZATION = ("zendesk", "zendesk_create_zendesk_organization")
     ZENDESK_DELETE_ZENDESK_ORGANIZATION = ("zendesk", "zendesk_delete_zendesk_organization")
     ZENDESK_COUNT_ZENDESK_ORGANIZATIONS = ("zendesk", "zendesk_count_zendesk_organizations")
@@ -222,10 +64,6 @@ class Action(Enum):
     ZENDESK_CREATE_ZENDESK_TICKET = ("zendesk", "zendesk_create_zendesk_ticket")
     ZENDESK_DELETE_ZENDESK_TICKET = ("zendesk", "zendesk_delete_zendesk_ticket")
     ZENDESK_GET_ZENDESK_ABOUT_ME = ("zendesk", "zendesk_get_about_me")
-<<<<<<< HEAD
-    ASANA_CREATE_SUBTASK = ("asana", "asana_create_subtask")
-    ASANA_GET_SUBTASKS = ("asana", "asana_get_subtasks")
-=======
     SLACK_SEND_SLACK_MESSAGE = ("slack", "slack_send_slack_message")
     SLACK_LIST_CHANNELS = ("slack", "slack_list_slack_channels")
     SLACK_LIST_MEMBERS = ("slack", "slack_list_slack_members")
@@ -265,23 +103,14 @@ class Action(Enum):
     APIFY_SEARCH_APIFY_STORE = ("apify", "apify_search_store")
     APIFY_GET_LAST_RUN_DATA = ("apify", "apify_get_last_run_data")
     APIFY_GET_APIFY_TASKS = ("apify", "apify_list_apify_tasks")
->>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     GITHUB_CREATE_ISSUE = ("github", "github_create_issue")
     GITHUB_GET_REPOSITORY = ("github", "github_list_github_repos")
     GITHUB_STAR_REPO = ("github", "github_star_repo")
     GITHUB_GET_ABOUT_ME = ("github", "github_get_about_me")
-<<<<<<< HEAD
-    GITHUB_CREATE_REPO_WEBHOOK = ("github", "github_create_repo_webhook")
-    GITHUB_FETCH_README = ("github", "github_fetch_readme")
-    GITHUB_GET_COMMITS = ("github", "github_get_commits")
-    GITHUB_GET_COMMITS_WITH_PATCH_FILE_FOR_THAT_COMMIT = ("github", "github_get_commits_with_code")
-    TYPEFORM_GET_ABOUT_ME = ("typeform", "typeform_get_about_me")
-=======
     GITHUB_FETCH_README = ("github", "github_fetch_readme")
     GITHUB_GET_COMMITS = ("github", "github_get_commits")
     GITHUB_GET_COMMITS_WITH_PATCH_FILE_FOR_THAT_COMMIT = ("github", "github_get_commits_with_code")
     GITHUB_GET_PATCH_FOR_COMMIT = ("github", "github_get_patch_for_commit")
->>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     TRELLO_CREATE_TRELLO_LIST = ("trello", "trello_create_trello_list")
     TRELLO_CREATE_TRELLO_CARD = ("trello", "trello_create_trello_card")
     TRELLO_GET_TRELLO_BOARD_CARDS = ("trello", "trello_get_trello_board_cards")
@@ -290,20 +119,6 @@ class Action(Enum):
     TRELLO_CREATE_TRELLO_LABEL = ("trello", "trello_create_trello_label")
     TRELLO_UPDATE_TRELLO_BOARD = ("trello", "trello_update_trello_board")
     TRELLO_GET_ABOUT_ME = ("trello", "trello_get_about_me")
-<<<<<<< HEAD
-    LINEAR_CREATE_ISSUE = ("linear", "linear_create_linear_issue")
-    LINEAR_GET_PROJECTS = ("linear", "linear_list_linear_projects")
-    LINEAR_GET_TEAMS_BY_PROJECT = ("linear", "linear_list_linear_teams")
-    NOTION_CREATE_NOTION_DATABASE = ("notion", "notion_create_notion_database")
-    NOTION_CREATE_NOTION_PAGE = ("notion", "notion_create_notion_page")
-    NOTION_FETCH_NOTION_PAGE = ("notion", "notion_fetch_notion_page")
-    NOTION_ARCHIVE_NOTION_PAGE = ("notion", "notion_archive_notion_page")
-    NOTION_FETCH_NOTION_DATABASE = ("notion", "notion_fetch_notion_database")
-    NOTION_UPDATE_NOTION_DATABASE = ("notion", "notion_update_notion_database")
-    NOTION_CREATE_PAGE_COMMENT = ("notion", "notion_create_page_comment")
-    NOTION_GET_ABOUT_ME = ("notion", "notion_get_about_me")
-    DROPBOX_GET_ABOUT_ME = ("dropbox", "dropbox_get_about_me")
-=======
     TRELLO_SEARCH_TRELLO = ("trello", "trello_search_trello")
     TRELLO_SEARCH_TRELLO_MEMBERS = ("trello", "trello_search_trello_member")
     TRELLO_UPDATE_TRELLO_CARD = ("trello", "trello_update_trello_card")
@@ -317,4 +132,3 @@ class Trigger(Enum):
     SLACK_NEW_MESSAGE = ("slack", "slack_receive_message")
     GITHUB_PULL_REQUEST_EVENT = ("github", "github_pull_request_event")
     GITHUB_COMMIT_EVENT = ("github", "github_commit_event")
->>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15

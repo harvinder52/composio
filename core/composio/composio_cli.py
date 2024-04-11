@@ -9,7 +9,7 @@ import termcolor
 from uuid import getnode as get_mac
 from .sdk.storage import get_user_connection, save_api_key, save_user_connection
 from .sdk.core import ComposioCore, UnauthorizedAccessException
-from .sdk.utils import generate_enums
+from .sdk.utils import generate_enums, generate_enums_beta
 from rich.table import Table
 
 import webbrowser
@@ -95,6 +95,10 @@ def parse_arguments():
     # Generate enums command
     generate_enums_parser = subparsers.add_parser('update', help='Update enums for apps and actions')
     generate_enums_parser.set_defaults(func=handle_update)
+
+    # Generate beta enums command
+    generate_enums_beta_parser = subparsers.add_parser('update-beta', help='Update enums including beta for apps and actions')
+    generate_enums_beta_parser.set_defaults(func=handle_update_beta)
 
     return parser.parse_args()
 
@@ -293,8 +297,16 @@ def set_global_trigger_callback(args):
 
 def handle_update(args):
     client = ComposioCore()
+    auth_user(client)
     generate_enums()
     console.print(f"\n[green]✔ Enums updated successfully![/green]\n")
+    
+def handle_update_beta(args):
+    client = ComposioCore()
+    auth_user(client)
+    generate_enums_beta()
+    console.print(f"\n[green]✔ Enums(including Beta) updated successfully![/green]\n")
+
 
 def add_integration(args):
     client = ComposioCore()
@@ -391,6 +403,13 @@ def print_intro():
 │                                                                           │
 └───────────────────────────────────────────────────────────────────────────┘
         """)
+
+
+def auth_user(client: ComposioCore):
+    user_mac_address = get_mac()
+    unique_identifier = f"{user_mac_address}"
+    
+    return client.authenticate(unique_identifier)
 
 def main():
     print_intro()
