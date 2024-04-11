@@ -14,7 +14,11 @@ readme_path = resolve_paths(get_current_dir(), "README.md")
 
 setup(
     name="composio_crewai",
+<<<<<<< HEAD
     version="0.1.48",
+=======
+    version="0.1.87",
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     author="Himanshu",
     author_email="himanshu@composio.dev",
     description="Use Composio to get an array of tools with your CrewAI agent.",
@@ -26,6 +30,10 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
+<<<<<<< HEAD
     python_requires=">=3.7",
+=======
+    python_requires=">=3.9",
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     include_package_data=True,
 )

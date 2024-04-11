@@ -1,7 +1,11 @@
 [project]
 dynamic = ["classifiers", "version", "readme", "authors", "requires-python", "description"]
 dependencies = [
+<<<<<<< HEAD
     "composio_langchain===0.1.48",
+=======
+    "composio_langchain===0.1.87",
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 ]
 name = "composio_crewai"
 

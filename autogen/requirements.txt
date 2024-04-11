@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 composio_core===0.1.24
 pyautogen===0.2.19
+=======
+composio_core===0.1.87
+pyautogen>=0.2.19
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15

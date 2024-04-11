@@ -1,5 +1,6 @@
 from setuptools import setup
 import os
+<<<<<<< HEAD
 
 from setuptools import setup
 from setuptools.command.install import install
@@ -16,16 +17,35 @@ def resolve_paths(*paths):
 readme_path = resolve_paths(get_current_dir(), "README.md")
 
 
+=======
+from setuptools import setup
+from setuptools.command.install import install
+
+def get_current_dir():
+    return os.path.dirname(os.path.realpath(__file__))
+
+def resolve_paths(*paths):
+    return os.path.join(*paths)
+
+readme_path = resolve_paths(get_current_dir(), "README.md")
+
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 class InstallCommandMiddleware(install):
     """Customized setuptools install command."""
 
     def run(self):
         install.run(self)
 
+<<<<<<< HEAD
 
 setup(
     name="composio_core",
     version="0.1.48",
+=======
+setup(
+    name="composio_core",
+    version="0.1.87",
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     author="Utkarsh",
     author_email="utkarsh@composio.dev",
     description="Core package to act as a bridge between composio platform and other services.",
@@ -37,7 +57,11 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
+<<<<<<< HEAD
     python_requires=">=3.7",
+=======
+    python_requires=">=3.9",
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     include_package_data=True,
     cmdclass={
         "install": InstallCommandMiddleware,
