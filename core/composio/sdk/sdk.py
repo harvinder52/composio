@@ -273,6 +273,10 @@ class Composio:
         if resp.status_code != 200:
             raise Exception(f"Failed to get app {app_name}. Status code: {resp.status_code}, Response: {resp.text}")
         return resp.json()
+    
+    def get_app(self, app_name: str):
+        resp = self.http_client.get(f"{self.base_url}/v1/apps/{app_name}")
+        return resp.json()
 
     def get_list_of_actions(
         self, apps: list[App] = None, actions: list[Action] = None
