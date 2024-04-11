@@ -1,9 +1,15 @@
 import types
 from typing import List, Annotated
+<<<<<<< HEAD
+from .pydantic_utils import json_schema_to_model
+from langchain_core.tools import StructuredTool 
+from composio import ComposioCore, App, Action
+=======
 
 from .pydantic_utils import json_schema_to_model
 from langchain_core.tools import StructuredTool 
 from composio import ComposioCore, App, Action, FrameworkEnum
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 from typing import List
 from inspect import Parameter, Signature
 from pydantic import create_model, Field
@@ -26,12 +32,20 @@ fallback_values = {
 }
 
 def pydantic_model_from_param_schema(param_schema):
+<<<<<<< HEAD
+    fields = {}
+    param_title = param_schema['title'].replace(" ", "")
+    required_props = param_schema.get('required', [])
+    schema_params_object = param_schema.get('properties', {})
+    for prop_name, prop_info in schema_params_object.items():
+=======
     required_fields = {}
     optional_fields = {}
     param_title = param_schema['title'].replace(" ", "")
     required_props = param_schema.get('required', [])
     schema_params_object = param_schema.get('properties', {})
     for prop_name, prop_info in param_schema.get('properties', {}).items():
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
         prop_type = prop_info["type"]
         prop_title = prop_info['title'].replace(" ", "")
         prop_default = prop_info.get('default', fallback_values[prop_type])
@@ -41,7 +55,11 @@ def pydantic_model_from_param_schema(param_schema):
             signature_prop_type = pydantic_model_from_param_schema(prop_info)
 
         if prop_name in required_props:
+<<<<<<< HEAD
+            fields[prop_name] = (signature_prop_type, 
+=======
             required_fields[prop_name] = (signature_prop_type, 
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
                                 Field(..., 
                                     title=prop_title, 
                                     description=prop_info.get('description', 
@@ -49,19 +67,31 @@ def pydantic_model_from_param_schema(param_schema):
                                                                              prop_title))
                                     ))
         else:
+<<<<<<< HEAD
+            fields[prop_name] = (signature_prop_type, 
+                                Field(title=prop_title, 
+                                    default=prop_default
+                                    ))
+    fieldModel = create_model(param_title, **fields)
+=======
             optional_fields[prop_name] = (signature_prop_type, 
                                 Field(title=prop_title, 
                                     default=prop_default
                                     ))
     fieldModel = create_model(param_title, **required_fields, **optional_fields)
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     return fieldModel
         
 def get_signature_format_from_schema_params(
         schema_params
 ):
+<<<<<<< HEAD
+    parameters = []
+=======
     required_parameters = []
     optional_parameters = []
 
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     required_params = schema_params.get('required', [])
     schema_params_object = schema_params.get('properties', {})
     for param_name, param_schema in schema_params_object.items():
@@ -83,12 +113,17 @@ def get_signature_format_from_schema_params(
             annotation=param_annotation,
             default=Parameter.empty if param_name in required_params else param_default 
         )
+<<<<<<< HEAD
+        parameters.append(param)
+    return parameters
+=======
         is_required = param_name in required_params
         if is_required:
             required_parameters.append(param)
         else :
             optional_parameters.append(param)
     return required_parameters + optional_parameters
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 
     
 def ComposioTool(client : ComposioCore, action_schema: dict[str, any]) ->  StructuredTool:
@@ -116,12 +151,19 @@ def ComposioTool(client : ComposioCore, action_schema: dict[str, any]) ->  Struc
         func = action_func
     )
 
+<<<<<<< HEAD
+client = ComposioCore()
+=======
 client = ComposioCore(framework=FrameworkEnum.LANGCHAIN)
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 
 def ComposioToolset(apps: List[App] = [], actions: List[Action] = []) -> List[StructuredTool]:
     if len(apps) >0 and len(actions) > 0:
         raise ValueError("You must provide either a list of tools or a list of actions, not both")
+<<<<<<< HEAD
+=======
     if client.is_authenticated() == False:
         raise Exception("User not authenticated. Please authenticate using composio-cli add <app_name>")
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     actions_list = client.sdk.get_list_of_actions(apps, actions)
     return [ComposioTool(client, action) for action in actions_list]

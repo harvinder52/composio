@@ -4,11 +4,18 @@ dependencies = [
     "requests",
     "jsonschema",
     "argparse",
+<<<<<<< HEAD
+    "beaupy===3.7.2",
+    "termcolor==2.4.0",
+    "pydantic==2.6.4",
+    "openai==1.14.1"
+=======
     "beaupy>=3.7.2",
     "termcolor>=2.4.0",
     "pydantic>=2.6.4",
     "openai>=1.14.1",
     "rich>=13.7.1"
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 ]
 name = "composio_core"
 

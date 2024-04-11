@@ -1,6 +1,20 @@
 from typing import Union
 import requests
 
+<<<<<<< HEAD
+from .sdk import ConnectionRequest, ConnectedAccount
+from .storage import get_user_connection, get_api_key, save_api_key
+from .sdk import Composio
+from .enums import TestIntegration, Action
+
+class ComposioCore:
+    sdk: Composio = None
+
+    def __init__(self, base_url = "https://backend.composio.dev/api", manage_auth = True):
+        self.base_url = base_url
+        self.manage_auth = manage_auth
+        self.http_client = requests.Session()
+=======
 from .utils import get_git_user_info
 from .sdk import ConnectionRequest, ConnectedAccount
 from .storage import delete_user_connections, get_base_url, get_user_connection, get_api_key, load_user_data, save_api_key, save_user_data, set_base_url
@@ -28,6 +42,7 @@ class ComposioCore:
         self.manage_auth = manage_auth
         self.http_client = requests.Session()
         self.framework = framework
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
         self.http_client.headers.update({
             'Content-Type': 'application/json'
         })
@@ -38,6 +53,27 @@ class ComposioCore:
                 self.http_client.headers.update({
                     'Content-Type': 'application/json',
                     'x-api-key': api_key
+<<<<<<< HEAD
+                })
+                self.sdk = Composio(api_key, base_url)
+
+    def authenticate(self, hash: str):
+        resp = self.http_client.post(f"{self.base_url}/v1/client/auth/identify", json={
+            "hash": hash
+        });
+        if resp.status_code == 202:
+            api_key = resp.json().get('apiKey')
+            self.http_client.headers.update({
+                'Content-Type': 'application/json',
+                'x-api-key': api_key
+            })
+            self.sdk = Composio(api_key, self.base_url)
+            if self.manage_auth:
+                save_api_key(api_key)
+            return api_key
+
+        raise Exception("Failed to authenticate")
+=======
                 });
                 self.sdk = Composio(api_key, base_url)
                 if framework is not None and __IS_FIRST_TIME__ == True:
@@ -96,6 +132,7 @@ class ComposioCore:
             raise UnauthorizedAccessException("UnauthorizedError: Unauthorized access to cli/verify-cli-session")
         
         raise Exception("Bad request to cli/verify-cli-session")
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     
     def initiate_connection(self, integrationId: Union[str, TestIntegration]) -> ConnectionRequest:
         if isinstance(integrationId, TestIntegration):
@@ -109,6 +146,8 @@ class ComposioCore:
         
         raise Exception("Failed to create connection")
     
+<<<<<<< HEAD
+=======
     def set_global_trigger(self, callback_url: str):
         try:
             self.sdk.set_global_trigger(callback_url)
@@ -147,6 +186,7 @@ class ComposioCore:
         connectionId = get_user_connection(app_name)
         return connectionId
 
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     def execute_action(self, action: Action, params: dict):
         tool_name  = action.value[0]
         connectionId = get_user_connection(tool_name)
@@ -157,11 +197,17 @@ class ComposioCore:
         resp = account.execute_action(action, params)
         return resp
 
+<<<<<<< HEAD
+    def get_list_of_connections(self, app_name: list[str] = None) -> list[ConnectedAccount]:
+        resp = self.sdk.get_list_of_connected_accounts()
+=======
     def get_list_of_connections(self, app_name: list[Union[App, str]] = None) -> list[ConnectedAccount]:
         for i, item in enumerate(app_name):
             if isinstance(item, App):
                 app_name[i] = item.value
-
+        
+        resp = []
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
         if app_name is not None:
             resp = [item for item in resp if item.appUniqueId in app_name]
 

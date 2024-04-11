@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+Composio <> Autogen
+Use Composio to enhance your Autogen workflows with a suite of tools.
+
+# Usage
+Within your Autogen project:
+=======
 # Composio <> Autogen
 Use Composio to enhance your Autogen workflows with a suite of tools.
 
@@ -96,3 +103,4 @@ composio_tools.register_tools(actions=[Action.GITHUB_CREATE_ISSUE])
 ```python
 composio_tools.register_tools([App.ASANA, App.GITHUB])
 ```
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15

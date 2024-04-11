@@ -5,17 +5,28 @@ import requests
 from pydantic import BaseModel, ConfigDict
 
 from .enums import Action, App, TestIntegration
+<<<<<<< HEAD
+=======
 from .storage import get_base_url
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 from openai.types.chat.chat_completion import ChatCompletion
 from openai.types.beta.threads import run
 from openai import Client
 from openai.types.beta import thread
 import json
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 class SchemaFormat(Enum):
     OPENAI = "openai"
     DEFAULT = "default"
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 class ConnectionRequest(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     connectionStatus: str
@@ -28,6 +39,17 @@ class ConnectionRequest(BaseModel):
         super().__init__(**data)
         self.sdk_instance = sdk_instance
 
+<<<<<<< HEAD
+=======
+    def save_user_access_data(self, field_inputs: dict):
+        connected_account_id = self.sdk_instance.get_connected_account(self.connectedAccountId)
+        resp = self.sdk_instance.http_client.post(f"{self.sdk_instance.base_url}/v1/connectedAccounts", json={
+            "integrationId": connected_account_id.integrationId,
+            "data": field_inputs,
+        })
+        return resp.json()
+
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     def wait_until_active(
         self, timeout=60
     ) -> "ConnectedAccount":  # Timeout adjusted to seconds
@@ -46,6 +68,18 @@ class ConnectionRequest(BaseModel):
         )
 
 
+<<<<<<< HEAD
+class OAuth2ConnectionParams(BaseModel):
+    scope: Optional[str] = None
+    base_url: Optional[str] = None
+    client_id: str
+    token_type: Optional[str] = None
+    access_token: Optional[str] = None
+    client_secret: str
+    headers: Optional[dict] = None
+    queryParams: Optional[dict] = None
+
+=======
 class AuthConnectionParams(BaseModel):
     scope: Optional[str] = None
     base_url: Optional[str] = None
@@ -66,11 +100,16 @@ class ActiveTrigger(BaseModel):
 
     def __init__(self, sdk_instance: "Composio", **data):
         super().__init__(**data)
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 
 class ConnectedAccount(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     integrationId: str
+<<<<<<< HEAD
+    connectionParams: OAuth2ConnectionParams
+=======
     connectionParams: AuthConnectionParams
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     appUniqueId: str
     id: str
     status: str
@@ -120,8 +159,13 @@ class ConnectedAccount(BaseModel):
                 ]
             else:
                 return actions["items"]
+<<<<<<< HEAD
+
+        raise Exception("Failed to get actions")
+=======
             
         raise Exception("Failed to get actions. You might want to run composio-cli update and restart the python notebook to reload the updated library.")
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 
     def handle_tools_calls(self, tool_calls: ChatCompletion) -> list[any]:
         output = []
@@ -184,7 +228,11 @@ class Integration(BaseModel):
 
 class Composio:
     def __init__(
+<<<<<<< HEAD
+        self, api_key: str = None, base_url="https://backend.composio.dev/api"
+=======
         self, api_key: str = None, base_url=get_base_url()
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     ):
         self.base_url = base_url
         self.api_key = api_key
@@ -193,6 +241,11 @@ class Composio:
             {"Content-Type": "application/json", "x-api-key": self.api_key}
         )
 
+<<<<<<< HEAD
+    def get_list_of_apps(self):
+        resp = self.http_client.get(f"{self.base_url}/v1/apps")
+        return resp.json()
+=======
     def list_triggers(self, app_names: list[str] = None):
         resp = self.http_client.get(f"{self.base_url}/v1/triggers", params={
             "appNames": ",".join(app_names) if app_names else None
@@ -248,6 +301,11 @@ class Composio:
     def get_list_of_apps(self):
         resp = self.http_client.get(f"{self.base_url}/v1/apps")
         return resp.json()
+    
+    def get_app(self, app_name: str):
+        resp = self.http_client.get(f"{self.base_url}/v1/apps/{app_name}")
+        return resp.json()
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 
     def get_list_of_actions(
         self, apps: list[App] = None, actions: list[Action] = None
@@ -271,6 +329,9 @@ class Composio:
             else:
                 return actions_response["items"]
 
+<<<<<<< HEAD
+        raise Exception("Failed to get actions")
+=======
         raise Exception("Failed to get actions. You might want to run composio-cli update and restart the python notebook to reload the updated library.")
     
     def get_list_of_triggers(
@@ -287,6 +348,7 @@ class Composio:
             triggers_response = resp.json()
             return triggers_response
         raise Exception("Failed to get triggers")
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
 
     def get_list_of_integrations(self) -> list[Integration]:
         resp = self.http_client.get(f"{self.base_url}/v1/integrations")

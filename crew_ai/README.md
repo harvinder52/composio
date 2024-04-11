@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+Composio <> CrewAI
+Utilize Composio to integrate a suite of tools with your CrewAi projects.
+
+# Usage
+Within your CrewAI project environment:
+=======
 # Composio <> CrewAI
 
 ![CrewAI Logo](https://i.imgur.com/jXeNUda.png)
@@ -92,3 +99,4 @@ toolsGithubCreateIssue = ComposioToolset(actions=[Action.GITHUB_CREATE_ISSUE])
 ```python
 toolsAsanaGithub = ComposioToolset(apps=[App.ASANA, App.GITHUB])
 ```
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15

@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+Composio <> LangChain
+Use Composio to get an array of tools with your LangChain agent.
+
+# Usage
+Inside your LangChain codebase:
+=======
 ## 🦜🔗 Using Composio With LangChain
 
 Integrate Composio with LangChain agents to allow them to interact seamlessly with external apps, enhancing their functionality and reach.
@@ -91,3 +98,4 @@ toolsGithubCreateIssue = ComposioToolset(actions=[Action.GITHUB_CREATE_ISSUE])
 # Allow usage of Asana and GitHub only
 toolsAsanaGithub = ComposioToolset(apps=[App.ASANA, App.GITHUB])
 ```
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15

@@ -87,7 +87,11 @@ def print_intro():
 
 def auth_user(client: ComposioClient):
     user_mac_address = get_mac()
+<<<<<<< HEAD
+    unique_identifier = f"{user_mac_address}-autogen"
+=======
     unique_identifier = f"{user_mac_address}"
+>>>>>>> 9b74fd487aacca2476eed864b52a5157f0c25c15
     
     return client.authenticate(unique_identifier)
 
