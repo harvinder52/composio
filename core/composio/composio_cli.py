@@ -167,7 +167,8 @@ def logout(args):
 
 def update_base_url(args):
     client = ComposioCore()
-    base_url = args.base_url
+    # Ensuring /api is not forgotten at the end of base_url
+    base_url = args.base_url.rstrip('/') + '/api' if not args.base_url.endswith('/api') else args.base_url
     console.print(f"\n[green]> Updating base URL to: {base_url}...[/green]\n")
     try:
         client.set_base_url(base_url)
