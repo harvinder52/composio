@@ -37,7 +37,7 @@ Example:
 
 ```python
 class ScrapeWebsiteToolRequest(BaseModel):
-    website_url: str = Field(..., description="Mandatory website URL to read the file")
+    website_url: str = Field(..., description="Mandatory website URL to read the contents of this website from ")
 ```
 
 Define the request schema class. You can have multiple objects in the same format as the above one. Just define the variable, its type, and its properties. Follow the standard Pydantic rules; the three dots `...` mean that the field is required. The object can be a `str`, `int`, or any other datatype. The `description` is important as it helps the agent understand what to enter in the field.

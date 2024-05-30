@@ -7,7 +7,7 @@ from ..action import Action
 
 
 class ScrapeWebsiteToolRequest(BaseModel):
-    website_url: str = Field(..., description="Mandatory website url to read the file")
+    website_url: str = Field(..., description="Mandatory website url to read contents of the website from")
 
 class ScrapeWebsiteToolResponse(BaseModel):
     website_content: str = Field(..., description="The content of the website")
