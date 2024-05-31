@@ -11,13 +11,14 @@ from openai import OpenAI
 dotenv.load_dotenv()
 
 # Initialize tools.
+openai_client = OpenAI()
 composio_toolset = ComposioToolSet()
 
 # Define task.
-task = "what is the page about give a short summary of whatever is happening on this site 'https://writings.stephenwolfram.com/2021/03/what-is-consciousness-some-new-perspectives-from-our-physics-project/' keep it as short as possible"
+task = "scrape this page and then do a semantic search to find all the relevent info related to neural networks. the url is  'https://www.jeremykun.com/main-content/' delete the instance after you are done"
 
 # Get GitHub tools that are pre-configured
-tools = composio_toolset.get_tools(apps=[App.WEBTOOL])
+tools = composio_toolset.get_tools(apps=[App.WEBTOOL, App.RAGTOOLACTIONS])
 
 # Get response from the LLM 
 response = openai_client.chat.completions.create(

@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import dotenv
-from composio_openai import Action, ComposioToolSet
+from composio_openai import App, ComposioToolSet
 from openai import OpenAI
 
 
@@ -13,11 +13,7 @@ openai_client = OpenAI()
 composio_toolset = ComposioToolSet()
 
 # Retrieve actions
-actions = composio_toolset.get_actions(
-    actions=[
-        Action.NOTION_ADD_NOTION_PAGE_CHILDREN,
-    ]
-)
+tools = composio_toolset.get_tools(apps=[App.WEBTOOL, App.RAGTOOLACTIONS])
 
 # Setup openai assistant
 assistant_instruction = (
@@ -30,13 +26,12 @@ assistant = openai_client.beta.assistants.create(
     name="Personal Assistant",
     instructions=assistant_instruction,
     model="gpt-4-turbo-preview",
-    tools=actions,  # type: ignore
+    tools=tools,  # type: ignore
 )
 
 # Give a task to execute via Openai Assistants
 my_task = (
-    f"Can you copy all the events in coming week from google calendar to notion? "
-    f"Today's date is {datetime.now()} and day is {datetime.now().strftime('%A')}"
+    f"scrape this page and then do a semantic search to find all the relevent info related to neural networks. the url is  'https://www.jeremykun.com/main-content/' delete the instance after you are done "
 )
 
 # create a thread
