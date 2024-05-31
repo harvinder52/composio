@@ -19,7 +19,6 @@ docker = "*"
 gymnasium = "*"
 inflection = "*"
 jsonref = "*"
-beautifulsoup4 = "*"
 embedchain = "*"
 
 [dev-packages]

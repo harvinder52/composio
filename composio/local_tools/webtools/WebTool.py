@@ -1,6 +1,5 @@
 from pydantic import BaseModel, Field
 import ssl
-from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 from composio.local_tools.tool import Tool
 from ..action import Action
@@ -27,6 +26,10 @@ class ScrapeWebsiteTool(Action):
     def execute(self, request: ScrapeWebsiteToolRequest, authorisation_data: dict = {}):
         """Scrape the website and return the content"""
         url = request.website_url
+        try:
+            from bs4 import BeautifulSoup
+        except ImportError as e:
+            raise ImportError("Failed to import BeautifulSoup:", e)
         try:
             # Adding headers to mimic a browser request
             headers = {
@@ -70,6 +73,10 @@ class ScrapeWebsiteElementTool(Action):
         """Scrape a specific element from the website and return its content"""
         url = request.website_url
         selector = request.element_selector
+        try:
+            from bs4 import BeautifulSoup
+        except ImportError as e:
+            raise ImportError("Failed to import BeautifulSoup:", e)
         try:
             # Adding headers to mimic a browser request
             headers = {
