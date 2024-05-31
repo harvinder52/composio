@@ -19,7 +19,6 @@ docker = "*"
 gymnasium = "*"
 inflection = "*"
 jsonref = "*"
-embedchain = "*"
 
 [dev-packages]
 black = ">=24.1.1"
