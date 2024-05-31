@@ -12,10 +12,9 @@ from composio.local_tools.local_workspace.history_keeper.history_keeper_tool imp
 )
 from composio.local_tools.local_workspace.workspace.workspace_tool import LocalWorkspace
 
+from composio.local_tools.ragtool import RagToolActions
+from composio.local_tools import Mathematical
 from composio.local_tools.webtools import WebTool
-
-from ..local_tools import Mathematical
-
 
 class LocalToolHandler:
     def __init__(self):
@@ -38,6 +37,7 @@ class LocalToolHandler:
         h_keeper_tool.set_workspace_factory(w)
         h_keeper_tool.set_history_processor(h)
         return [
+            RagToolActions(),
             Mathematical(),
             workspace_tool,
             cmd_manager_tool,

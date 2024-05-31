@@ -40,9 +40,13 @@ class ScrapeWebsiteTool(Action):
             response = urlopen(req, context=context)
             html = response.read().decode('utf-8')
             soup = BeautifulSoup(html, 'html.parser')
-            return ScrapeWebsiteToolResponse(website_content=str(soup))
+            print("RESPONSE _________________________",str(soup))
+            result = str(soup)
+            return result
         except Exception as e:
-            return ScrapeWebsiteToolResponse(website_content=f"Error scraping website: {e}")
+            print("ERROR __________________",e)
+            result = f"Error scraping website: {e}"
+            return result
 
 class ScrapeWebsiteElementToolRequest(BaseModel):
     website_url: str = Field(..., description="Mandatory website url to read the file")
@@ -81,11 +85,11 @@ class ScrapeWebsiteElementTool(Action):
             soup = BeautifulSoup(html, 'html.parser')
             element = soup.select_one(selector)
             if element:
-                return ScrapeWebsiteElementToolResponse(element_content=str(element))
+                return str(element)
             else:
-                return ScrapeWebsiteElementToolResponse(element_content="Element not found")
+                return "Element not found"
         except Exception as e:
-            return ScrapeWebsiteElementToolResponse(element_content=f"Error scraping element: {e}")
+            return f"Error scraping element: {e}"
 
 class WebTool(Tool):
     """Web Tools"""

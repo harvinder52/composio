@@ -13,7 +13,7 @@ openai_client = OpenAI()
 composio_toolset = ComposioToolSet()
 
 # Retrieve actions
-tools = composio_toolset.get_tools(apps=[App.WEBTOOL, App.RAGTOOLACTIONS])
+tools = composio_toolset.get_acti(apps=[Action])
 
 # Setup openai assistant
 assistant_instruction = (
