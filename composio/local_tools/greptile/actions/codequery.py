@@ -8,6 +8,7 @@ from composio.local_tools.local_workspace.commons.get_logger import get_logger
 
 logger = get_logger()
 
+
 class message(BaseModel):
     id: str = Field(..., description="The id of the message")
     content: str = Field(..., description="The content of the message")
@@ -16,6 +17,7 @@ class message(BaseModel):
         description="The role of the message. ex system,user",
         examples=["system", "user"],
     )
+
 
 class CodeQueryRequest(BaseModel):
     question: str = Field(
@@ -38,18 +40,20 @@ class CodeQueryRequest(BaseModel):
         examples=["openai/docs", "samparkai/composio"],
     )
 
+
 class CodeQueryResponse(BaseModel):
     response: str = Field(..., description="The response to the question")
 
 
 class CodeQuery(Action):
     """
-    Ask the mentor, any questions on the code and get the answer from the mentor.
-    with a list of relevant code references (filepaths, line numbers, etc)
-    If it's first question
-    examples:
-    “How does auth work in this codebase?”
-    “Generate a description for the JIRA ticket with codebase context”
+    Get detailed answers for any questions on the code.
+    The answer should be detailed and include a list of relevant code references (filepaths, line numbers, etc)
+    examples of types of question you can ask are:
+    "Where is the logic for authentication located"
+    "What is the name of production branch for this codebase?"
+    "What is the database adapter used in this codebase?"
+    "Generate a description for the JIRA ticket with codebase context"
     “Rewrite this code snippet using relevant abstractions already in the repo”
     """
 

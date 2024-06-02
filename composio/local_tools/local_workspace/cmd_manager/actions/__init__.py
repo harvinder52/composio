@@ -1,6 +1,4 @@
-from .clone_github import (
-    GithubCloneCmd,
-)
+from .clone_github import GithubCloneCmd, GithubCmd
 from .cmds import (
     CreateFileCmd,
     GoToLineNumInOpenFile,
