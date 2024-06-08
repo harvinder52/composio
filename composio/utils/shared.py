@@ -213,6 +213,7 @@ def get_signature_format_from_schema_params(schema_params: t.Dict) -> t.List[Par
         param_oneOf = param_schema.get("oneOf", None)
         if param_oneOf is not None:
             param_types = [ptype.get("type") for ptype in param_oneOf]
+            #TODO: Handle more than 3 options in oneOf
             if len(param_types) == 1:
                 signature_param_type = SCHEMA_TYPE_TO_PYTHON_TYPE[param_types[0]]
             elif len(param_types) == 2:
